@@ -37,6 +37,10 @@ def create_app(test_config=None):
     def view_persons():
         return render_template('list_person.html', page_title="People in database")
 
+    @app.route('/prime_ministers/')
+    def view_prime_ministers():
+        return render_template('list_minister.html', page_title="Prime Ministers")
+
     from . import db
     db.init_app(app)
 
