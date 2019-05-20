@@ -27,6 +27,6 @@ Demo 5: Add a form to list_person.html so user can search on person's name
 
 Challenge 5: Add authentication to application so users can log in.
     a. Table already exists in database
-    b. Follow instructions on http://flask.pocoo.org/docs/1.0/tutorial/views/
+    b. Follow instructions in tutorial at http://flask.pocoo.org/docs/1.0/tutorial/views/
     c. Table is tbl_user with fields (id, vc_username, vc_password)
-        Table in demo is user with fields (id, username, password)
+       Table in tutorial is user with fields (id, username, password)
