@@ -76,10 +76,9 @@ def create_app(test_config=None):
         persons = pm_db.execute(sql).fetchall()
         return render_template('list_person.html', persons=persons, page_title="People in database")
 
-    @app.route('/prime_ministers/')
-    def view_prime_ministers():
-        ministry = "Prime Minister"
-        page_title = ministry + 's'
+    def view_ministers(ministry="Prime Minister", page_title=None):
+        if page_title is None:
+            page_title = ministry + 's'
         pm_db = db.get_db()
         sql = """select distinct p.id, p.vc_common_name, p.vc_surname, p.date_birth, p.vc_birth_place, p.date_death 
                 from tbl_person p inner join tbl_ministry m on p.id=m.id_person 
@@ -87,6 +86,14 @@ def create_app(test_config=None):
                 order by p.vc_surname asc, p.vc_common_name asc"""
         ministers = pm_db.execute(sql, (ministry,)).fetchall()
         return render_template('list_minister.html', ministers=ministers, ministry=ministry, page_title=page_title)
+
+    @app.route('/prime_ministers/')
+    def view_prime_ministers():
+        return view_ministers("Prime Minister")
+
+    @app.route('/deputy_prime_ministers/')
+    def view_deputy_prime_ministers():
+        return view_ministers("Deputy Prime Minister")
 
     # Filters
 
