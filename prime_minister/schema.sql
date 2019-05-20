@@ -1,6 +1,12 @@
 PRAGMA synchronous = OFF;
 PRAGMA journal_mode = MEMORY;
 BEGIN TRANSACTION;
+DROP TABLE IF EXISTS tbl_marriage;
+DROP TABLE IF EXISTS tbl_ministry;
+DROP TABLE IF EXISTS tbl_person;
+DROP TABLE IF EXISTS tbl_recreation;
+DROP TABLE IF EXISTS tbl_user;
+
 CREATE TABLE `tbl_marriage` (
   `id` integer PRIMARY KEY AUTOINCREMENT
 ,  `id_person` integer NOT NULL

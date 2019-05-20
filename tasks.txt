@@ -3,5 +3,15 @@ Challenge 1: Add a page for view_prime_ministers
     b. Create a function view_prime_ministers() which calls render_template("list_minister.html") with suitable title
     c. Add hyperlink to nav bar
 
+Challenge 2: List all people in database in list_person.html
+    a. Add sql to prime_minister.view_persons() function and pass results to render_template
+    b. Create a table in list_person.html with a loop to repeat the rows
+
+Challenge 3: Show list of recreations in view_person.html
+    a. tbl_recreation has a foreign key 'id_person' which joins to tbl_person 'id'
+    b. tbl_recreation has a varchar field 'vc_recreation' which contains the name of the recreation
+    c. Add sql in prime_minister.view_person(id_person) to find the list of recreations
+    d. Pass the list of recreations to render_template('view_perons.html'
+    e. Modify view_person.html to list any recreations
 
 
