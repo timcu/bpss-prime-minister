@@ -76,7 +76,7 @@ def create_app(test_config=None):
         ministry = "Prime Minister"
         page_title = ministry + 's'
         pm_db = db.get_db()
-        sql = """select p.id, p.vc_common_name, p.vc_surname, p.date_birth, p.vc_birth_place, p.date_death 
+        sql = """select distinct p.id, p.vc_common_name, p.vc_surname, p.date_birth, p.vc_birth_place, p.date_death 
                 from tbl_person p inner join tbl_ministry m on p.id=m.id_person 
                 where m.vc_ministry=?
                 order by p.vc_surname asc, p.vc_common_name asc"""
