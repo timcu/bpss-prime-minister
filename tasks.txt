@@ -1,0 +1,7 @@
+Challenge 1: Add a page for view_prime_ministers
+    a. Create a template called list_minister.html which currently shows <h2>People who have held this ministry</h2>
+    b. Create a function view_prime_ministers() which calls render_template("list_minister.html") with suitable title
+    c. Add hyperlink to nav bar
+
+
+
