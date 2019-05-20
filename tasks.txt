@@ -22,3 +22,11 @@ Challenge 4: Add functionality for view_deputy_prime_ministers
     a. Add hyperlink to nav bar "Deputy Prime Ministers"
     b. Create a function view_ministers(ministry=PRIME_MINISTER, page_title=None) called by
         view_prime_ministers() and view_deputy_prime_ministers()
+
+Demo 5: Add a form to list_person.html so user can search on person's name
+
+Challenge 5: Add authentication to application so users can log in.
+    a. Table already exists in database
+    b. Follow instructions on http://flask.pocoo.org/docs/1.0/tutorial/views/
+    c. Table is tbl_user with fields (id, vc_username, vc_password)
+        Table in demo is user with fields (id, username, password)
