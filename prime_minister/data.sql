@@ -164,7 +164,7 @@ INSERT INTO `tbl_person` (`id`, `date_birth`, `date_death`, `vc_birth_place`, `v
 (36, '1930-05-21', '2015-03-20', 'VIC', 'Malcolm', 'John Malcolm', 'AC, CH, GCL', '', 'Fraser'),
 (37, '1961-09-29', NULL, 'UK', 'Julia', 'Julia Eileen', 'AC', '', 'Gillard'),
 (38, '1911-09-09', '2002-05-19', 'VIC', 'John', 'John Grey', 'GCMG, AC, CH', 'Sir', 'Gorton'),
-(39, '1929-12-09', NULL, 'SA', 'Bob', 'Robert James Lee', 'AC, GCL', '', 'Hawke'),
+(39, '1929-12-09', '2019-05-16', 'SA', 'Bob', 'Robert James Lee', 'AC, GCL', '', 'Hawke'),
 (40, '1908-08-05', '1967-12-17', 'NSW', 'Harold', 'Harold Edward', 'CH', '', 'Holt'),
 (41, '1932-08-01', '2010-04-02', 'NSW', 'Sonia', 'Sonia Rachel', '', 'Lady', 'Hopkins'),
 (42, '1939-07-26', NULL, 'NSW', 'John', 'John Winston', 'OM, AC', '', 'Howard'),

@@ -3,5 +3,13 @@ Challenge 1: Add a page for view_prime_ministers
     b. Create a function view_prime_ministers() which calls render_template("list_minister.html") with suitable title
     c. Add hyperlink to nav bar
 
+Demo 2:
+    a. Create a run configuration to init-db
+    b. list all prime ministers in a table
+
+Challenge 2: List all people in database in list_person.html
+    a. Add sql to prime_minister.view_persons() function and pass results to render_template
+    b. Create a table in list_person.html with a loop to repeat the rows
+
 
 
