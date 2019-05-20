@@ -65,7 +65,9 @@ def create_app(test_config=None):
             where m1.id_person=?
             order by m1.date_start asc"""
         ministries = pm_db.execute(sql, (id_person,)).fetchall()
-        return render_template('view_person.html', person=person, ministries=ministries, page_title="View person")
+        sql = """select * from tbl_recreation where id_person=?"""
+        recreations = pm_db.execute(sql, (person['id'],)).fetchall()
+        return render_template('view_person.html', person=person, ministries=ministries, recreations=recreations, page_title="View person")
 
     @app.route('/persons/')
     def view_persons():

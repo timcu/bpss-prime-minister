@@ -33,4 +33,10 @@
         {% endfor %}
     </table>
 {% endif %}
+{% if recreations %}
+    <h3>Recreations</h3>
+    {% for recreation in recreations %}
+        <div>{{recreation.vc_recreation}}</div>
+    {% endfor %}
+{% endif %}
 {% endblock %}
