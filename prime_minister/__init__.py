@@ -31,7 +31,6 @@ def create_app(test_config=None):
 
     # Utility functions
 
-    # EXTRA: function to calculate age
     def age(birthday, age_day=date.today()):
         """Returns person's age at age_day given their birthday
         Checks if they have already had their birthday in final year
@@ -48,7 +47,6 @@ def create_app(test_config=None):
     def index():
         return render_template('index.html', page_title="Beginner's Python Web Application")
 
-    # EXTRA: Add function to view a single person
     @app.route('/person/<id_person>')
     def view_person(id_person):
         if not id_person:
@@ -92,7 +90,6 @@ def create_app(test_config=None):
 
     # Filters
 
-    # EXTRA: date_format filter
     @app.template_filter('date_format')
     def date_format_filter(value, date_format="%d-%b-%Y"):
         try:
