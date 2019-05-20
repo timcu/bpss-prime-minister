@@ -1,4 +1,18 @@
 {% extends "layout.html" %}
 {% block page_content %}
     <h2>Here is a list of people in my database</h2>
+    <table>
+        <tr>
+            <th>Common name</th>
+            <th>Birth place</th>
+            <th>Action</th>
+        </tr>
+        {% for person in persons %}
+            <tr>
+                <td>{{ person.vc_prenominal }} {{ person.vc_common_name }} {{ person.vc_surname }} </td>
+                <td>{{ person.vc_birth_place }}</td>
+                <td><a href="{{ url_for('view_person',id_person=person.id) }}">view</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

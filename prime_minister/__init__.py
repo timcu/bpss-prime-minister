@@ -69,7 +69,12 @@ def create_app(test_config=None):
 
     @app.route('/persons/')
     def view_persons():
-        return render_template('list_person.html', page_title="People in database")
+        pm_db = db.get_db()
+        sql = """select distinct p.id, p.vc_common_name, p.vc_surname, p.date_birth, p.vc_birth_place, p.date_death 
+                from tbl_person p
+                order by p.vc_surname asc, p.vc_common_name asc"""
+        persons = pm_db.execute(sql).fetchall()
+        return render_template('list_person.html', persons=persons, page_title="People in database")
 
     @app.route('/prime_ministers/')
     def view_prime_ministers():
