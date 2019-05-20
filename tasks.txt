@@ -15,7 +15,7 @@ Challenge 3: Show list of recreations in view_person.html
     a. tbl_recreation has a foreign key 'id_person' which joins to tbl_person 'id'
     b. tbl_recreation has a varchar field 'vc_recreation' which contains the name of the recreation
     c. Add sql in prime_minister.view_person(id_person) to find the list of recreations
-    d. Pass the list of recreations to render_template('view_perons.html'
+    d. Pass the list of recreations to render_template('view_person.html')
     e. Modify view_person.html to list any recreations
 
 
