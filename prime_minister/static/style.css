@@ -87,8 +87,11 @@ nav li {
 }
 
 nav li a {
-    display: block;
     color: blue;
+}
+
+nav li a, nav li div {
+    display: block;
     text-align: center;
     padding: 5px 16px;
     text-decoration: none;

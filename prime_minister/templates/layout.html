@@ -10,6 +10,13 @@
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if g.user %}
+                <li><div>{{ g.user['vc_username'] }}</div></li>
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+            {% endif %}
             <li><a href="{{ url_for('view_persons') }}">People</a></li>
             <li><a href="{{ url_for('view_prime_ministers') }}">Prime Ministers</a></li>
             <li><a href="{{ url_for('view_deputy_prime_ministers') }}">Deputy Prime Ministers</a></li>
