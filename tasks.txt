@@ -30,3 +30,5 @@ Challenge 5: Add authentication to application so users can log in.
     b. Follow instructions in tutorial at http://flask.pocoo.org/docs/1.0/tutorial/views/
     c. Table is tbl_user with fields (id, vc_username, vc_password)
        Table in tutorial is user with fields (id, username, password)
+
+Challenge 6: Keep search form populated after clicking search button
