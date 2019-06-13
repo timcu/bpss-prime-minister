@@ -77,7 +77,8 @@ def create_app(test_config=None):
 
         pm_db = db.get_db()
         if request.method == 'POST':
-            given_name = sql_search_str(request.form['given-name'])
+            frm = request.form
+            given_name = sql_search_str(request.form['given_name'])
             surname = sql_search_str(request.form['surname'])
 
             sql = """select distinct p.id, p.vc_common_name, p.vc_given_names, p.vc_surname, p.date_birth, p.vc_birth_place, p.date_death 
@@ -86,8 +87,9 @@ def create_app(test_config=None):
                     order by p.vc_surname asc, p.vc_common_name asc"""
             persons = pm_db.execute(sql, {"gn": given_name, "sn": surname}).fetchall()
         else:
+            frm = None
             persons = None
-        return render_template('list_person.html', persons=persons, page_title="People in database")
+        return render_template('list_person.html', persons=persons, page_title="People in database", frm=frm)
 
     def view_ministers(ministry="Prime Minister", page_title=None):
         if page_title is None:
