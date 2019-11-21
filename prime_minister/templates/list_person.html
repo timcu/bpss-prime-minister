@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block page_content %}
     <form method="post">
-        <label for="given-names">Given name</label>
-        <input name="given-name" id="given-name" >
+        <label for="given-name">Given name</label>
+        <input name="given_name" id="given-name" value="{{ frm.given_name }}">
         <label for="surname">Surname</label>
-        <input name="surname" id="surname" >
+        <input name="surname" id="surname" value="{{ frm.surname }}">
         <input type="submit" value="search">
     </form>
     {% if persons %}
