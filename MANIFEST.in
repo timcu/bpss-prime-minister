@@ -1,0 +1,3 @@
+recursive-include prime_minister/templates *
+recursive-include prime_minister/static *
+include prime_minister/*.sql
