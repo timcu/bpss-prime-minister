@@ -32,3 +32,11 @@ Challenge 5: Add authentication to application so users can log in.
        Table in tutorial is user with fields (id, username, password)
 
 Challenge 6: Keep search form populated after clicking search button
+
+Challenge 7: Create files so that app can be packaged and installed
+    a. See https://flask.palletsprojects.com/en/1.1.x/tutorial/install/
+    b. Create setup.py
+    c. Create MANIFEST.in
+    d. pip install wheel
+    e. python setup.py bdist_wheel
+    f. pip install -e .
