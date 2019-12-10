@@ -80,10 +80,37 @@ def create_app(test_config=None):
             where m1.id_person=?
             order by m1.date_start asc"""
         ministries = pm_db.execute(sql, (id_person,)).fetchall()
+
+        # Concurrent ministries
+        concurrent_ids = set()
+        sql = """select m1.id from tbl_ministry m1 
+            left join tbl_ministry m2 on m1.id_next=m2.id 
+            where m1.id_person<>:id_person 
+            and m1.date_start<:date_end 
+            and (m2.date_start is null or m2.date_start>:date_start)"""
+        for m in ministries:
+            concurrent_ids_for_m = pm_db.execute(sql, dict(m)).fetchall()
+            for i in concurrent_ids_for_m:
+                concurrent_ids.add(i["id"])
+        n = len(concurrent_ids)
+        if n:
+            sql = 'select m1.*, m2.date_start as date_end ' \
+                  'from tbl_ministry m1 left join tbl_ministry m2 on m1.id_next=m2.id ' \
+                  'where m1.id in (?' + ',?' * (n - 1) + ') ' \
+                  'order by m1.date_start asc'
+            concurrent_ministries = pm_db.execute(sql, list(concurrent_ids)).fetchall()
+            concurrent_ministries = [dict(cm) for cm in concurrent_ministries]
+            for cm in concurrent_ministries:
+                cm["person"] = pm_db.execute('select * from tbl_person where id=?', (cm["id_person"],)).fetchone()
+        else:
+            concurrent_ministries = []
+
+        # Recreations
         sql = """select * from tbl_recreation where id_person=?"""
         recreations = pm_db.execute(sql, (person['id'],)).fetchall()
         return render_template('view_person.html', person=person, ministries=ministries, recreations=recreations,
-                               marriages=list_dict_marriages, page_title="View person")
+                               marriages=list_dict_marriages, page_title="View person",
+                               concurrent_ministries=concurrent_ministries)
 
     @app.route('/persons/', methods=('GET', 'POST'))
     def view_persons():
