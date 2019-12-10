@@ -43,6 +43,29 @@
         {% endfor %}
     </table>
 {% endif %}
+{% if concurrent_ministries %}
+    <h3>Concurrent Ministries</h3>
+    <table cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Ministry</th>
+            <th>Date start</th>
+            <th>Date end</th>
+            <th>State represented</th>
+            <th>Party</th>
+        </tr>
+        {% for ministry in concurrent_ministries %}
+            <tr>
+                <td><a href="{{url_for('view_person', id_person=ministry.person.id)}}" title="view person">{{ministry.person.vc_common_name}} {{ministry.person.vc_surname}}</a></td>
+                <td>{{ministry.vc_ministry}}</td>
+                <td class="date">{{ministry.date_start|date_format}}</td>
+                <td class="date">{{ministry.date_end|date_format}}</td>
+                <td>{{ministry.vc_state_represent}}</td>
+                <td>{{ministry.vc_party}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
 {% if recreations %}
     <h3>Recreations</h3>
     {% for recreation in recreations %}
