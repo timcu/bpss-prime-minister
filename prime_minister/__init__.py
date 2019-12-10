@@ -55,9 +55,26 @@ def create_app(test_config=None):
         person = pm_db.execute('select * from tbl_person where id=?', (id_person,)).fetchone()
         if not person:
             abort(404)
+        # Life - birth and death
         if person['date_death'] and person['date_birth']:
             person = dict(person)  # convert to dict as sqlite3.Row does not support item assignment
             person['age_death'] = age(person['date_birth'], person['date_death'])
+        # Life - marriages
+        sql = """select id, id_person, id_person_partner, num_children, num_year_marriage 
+            from tbl_marriage where id_person=:id_person
+            union
+            select id, id_person_partner, id_person, num_children, num_year_marriage 
+            from tbl_marriage where id_person_partner=:id_person
+            order by num_year_marriage asc"""
+        marriages = pm_db.execute(sql, {"id_person": id_person}).fetchall()
+        list_dict_marriages = []
+        sql = 'select * from tbl_person where id=?'
+        for m in marriages:
+            dict_marriage = dict(m)  # convert to dict so can assign items
+            dict_marriage["person"] = pm_db.execute(sql, (m["id_person_partner"],)).fetchone()
+            list_dict_marriages.append(dict_marriage)
+
+        # Ministries
         sql = """select m1.*, m2.date_start as date_end
             from tbl_ministry m1 left join tbl_ministry m2 on m1.id_next=m2.id
             where m1.id_person=?
@@ -65,7 +82,8 @@ def create_app(test_config=None):
         ministries = pm_db.execute(sql, (id_person,)).fetchall()
         sql = """select * from tbl_recreation where id_person=?"""
         recreations = pm_db.execute(sql, (person['id'],)).fetchall()
-        return render_template('view_person.html', person=person, ministries=ministries, recreations=recreations, page_title="View person")
+        return render_template('view_person.html', person=person, ministries=ministries, recreations=recreations,
+                               marriages=list_dict_marriages, page_title="View person")
 
     @app.route('/persons/', methods=('GET', 'POST'))
     def view_persons():
