@@ -7,6 +7,16 @@
 {% if person.date_birth %}
     <div>Born {{person.date_birth|date_format}} {{person.vc_birth_place}}</div>
 {% endif %}
+{% for marriage in marriages %}
+    <div>
+        {% if marriage.num_year_marriage %}
+            Married {{marriage.num_year_marriage}} to
+        {% else %}
+            Partnered with
+        {% endif %}
+        {{marriage.person.vc_common_name}} {{marriage.person.vc_surname}} and had {{marriage.num_children}} children.
+    </div>
+{% endfor %}
 {% if person.date_death %}
     <div>Died {{person.date_death|date_format}} age {{person.age_death}}</div>
 {% endif %}
