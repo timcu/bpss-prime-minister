@@ -56,3 +56,15 @@ Challenge 8: In template view_person.html show marriages in Life between birth a
             from tbl_marriage where id_person_partner=:id_person
             order by num_year_marriage asc"""
 
+Challenge 9: In view_person.html add a table of concurrent ministries under table of ministries.
+	A concurrent ministry is one which was occurring at the same time as the person's ministry
+	eg While John Howard was prime minister there were three deputy prime ministers
+		Tim Fischer   Deputy from 11-Mar-1996 to 20-Jul-1999
+		John Anderson Deputy from 20-Jul-1999 to 06-Jul-2005
+		Mark Vaile    Deputy from 06-Jul-2005 to 03-Dec-2007
+	Modify function view_person(id_person) in __init__.py
+	Modify template view_person.html
+	Pseudocode:
+	For each ministry period find other people's ministries which had some overlap.
+	Aggregate and remove duplicates from this list of ministries
+	Show the other ministries in order of start date.
