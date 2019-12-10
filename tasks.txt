@@ -40,3 +40,19 @@ Challenge 7: Create files so that app can be packaged and installed
     d. pip install wheel
     e. python setup.py bdist_wheel
     f. pip install -e .
+
+Challenge 8: In template view_person.html show marriages in Life between birth and death
+	Examples view_person.html
+	eg. "Married 1981 to Margie Aitken and had 3 children"
+	If not actually married num_year_marriage will be None.
+	eg. "Partnered with Tim Matheison and had 0 children"
+	Modify function view_person(id_person) in __init__.py to pass marriages to template
+	Use a union sql statement because we need to search id_person and id_person_partner.
+	The following sql uses named bindings.
+    sql = """select id, id_person, id_person_partner, num_children, num_year_marriage
+            from tbl_marriage where id_person=:id_person
+            union
+            select id, id_person_partner, id_person, num_children, num_year_marriage
+            from tbl_marriage where id_person_partner=:id_person
+            order by num_year_marriage asc"""
+
